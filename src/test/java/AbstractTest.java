@@ -7,7 +7,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 public abstract class AbstractTest {
 
     PostsService postsService;
-    private CommentService commentService;
+    CommentService commentService;
 
     @BeforeMethod
     public void setUp() {
