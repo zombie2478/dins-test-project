@@ -17,12 +17,14 @@ public class GetCommentsPostIdTest extends AbstractTest {
     @Test
     private void testCommentPostId() throws IOException {
         Response<List<Comment>> response = commentService.getComments(1).execute();
+        Response<List<Comment>> response1 = commentService.getComments(1).execute();
         assertThat(response.code(), equalTo(200));
 
         List<Comment> commentsList = response.body();
         assertThat(commentsList, notNullValue());
         assertThat(commentsList, hasSize(5));
         assertThat(commentsList, everyCommentHasAllFieldsNotNull());
+        assertThat(commentsList, equalTo(response1.body()));
     }
 
 }

@@ -16,9 +16,12 @@ public class GetPostTest extends AbstractTest {
     public void testPost() throws IOException {
         int postId = new Random().nextInt(100) + 1;
         Response<Post> response = postsService.getPost(postId).execute();
+        Response<Post> response1 = postsService.getPost(postId).execute();
 
         assertThat(response.code(), equalTo(200));
         assertThat(response.body(), notNullValue());
+
+        assertThat(response.body(), equalTo(response1.body()));
     }
 
 }
