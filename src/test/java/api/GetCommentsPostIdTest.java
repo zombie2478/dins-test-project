@@ -1,3 +1,5 @@
+package api;
+
 import com.dins.test.model.Comment;
 import org.testng.annotations.Test;
 import retrofit2.Response;
@@ -5,8 +7,11 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.util.List;
 
+import static matcher.CommentsListMatcher.everyCommentHasAllFieldsNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class GetCommentsPostIdTest extends AbstractTest {
     @Test
@@ -17,11 +22,7 @@ public class GetCommentsPostIdTest extends AbstractTest {
         List<Comment> commentsList = response.body();
         assertThat(commentsList, notNullValue());
         assertThat(commentsList, hasSize(5));
-        assertThat(commentsList, everyItem(allOf(hasProperty("postId", notNullValue()),
-                hasProperty("id", notNullValue()),
-                hasProperty("name", notNullValue()),
-                hasProperty("email", notNullValue()),
-                hasProperty("body", notNullValue())
-        )));
+        assertThat(commentsList, everyCommentHasAllFieldsNotNull());
     }
+
 }

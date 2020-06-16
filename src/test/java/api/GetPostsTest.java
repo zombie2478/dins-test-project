@@ -1,3 +1,5 @@
+package api;
+
 import com.dins.test.model.Post;
 import org.testng.annotations.Test;
 import retrofit2.Response;
