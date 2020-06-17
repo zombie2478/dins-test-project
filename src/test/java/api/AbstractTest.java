@@ -21,16 +21,16 @@ public abstract class AbstractTest {
 
     @BeforeMethod
     public void setUp() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(JacksonConverterFactory.create())
-                .client(new OkHttpClient.Builder()
-                                .addInterceptor(new HttpLoggingInterceptor(log::info).setLevel(BODY))
-                                .callTimeout(Duration.ofSeconds(30))
-                                .connectTimeout(Duration.ofSeconds(30))
-                                .readTimeout(Duration.ofSeconds(30))
-                                .build())
-                .build();
+       Retrofit retrofit = new Retrofit.Builder()
+               .baseUrl("https://jsonplaceholder.typicode.com/")
+               .addConverterFactory(JacksonConverterFactory.create())
+               .client(new OkHttpClient.Builder()
+                               .addInterceptor(new HttpLoggingInterceptor(log::info).setLevel(BODY))
+                               .callTimeout(Duration.ofSeconds(30))
+                               .connectTimeout(Duration.ofSeconds(30))
+                               .readTimeout(Duration.ofSeconds(30))
+                               .build())
+               .build();
         postsService = retrofit.create(PostsService.class);
         commentService = retrofit.create(CommentService.class);
 
